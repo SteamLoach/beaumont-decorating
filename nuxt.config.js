@@ -1,3 +1,6 @@
+import { CMS } from './cms/cms.config.js';
+import { toCase } from './plugins/utils.js';
+
 
 export default {
   mode: 'universal',
@@ -27,11 +30,15 @@ export default {
   ** Global CSS
   */
   css: [
+    '~assets/stylesheets/css-base/base.css'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/masterResolver.js',
+    '~/plugins/globalComponents.js',
+    '~/plugins/utils.js'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -51,13 +58,13 @@ export default {
     scss: ['assets/stylesheets/main.scss']
   },
   kenticokontent: {
-    projectId: 'xxxx-xxx-xxxx-xxxx-xxxxx',
+    projectId: CMS.KEY,
     enableAdvancedLogging: false,
-    previewApiKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    enablePreviewMode: true,
-    baseUrl: 'https://custom.uri/api/KenticoKontentProxy',
-    securedApiKey: 'xxx',
-    enableSecuredMode: true
+    //previewApiKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxx',
+    //enablePreviewMode: true,
+    //baseUrl: 'https://custom.uri/api/KenticoKontentProxy',
+    //securedApiKey: 'xxx',
+    //enableSecuredMode: true
   },
   /*
   ** Axios module configuration
