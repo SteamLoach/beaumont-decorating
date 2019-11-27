@@ -10,7 +10,7 @@ export const actions = {
   async nuxtServerInit ({dispatch}) {
     
     await dispatch('cms/getContentByModel', {
-      model: 'page_template',
+      model: 'page',
       mutation: 'cms/resolveToStore',
       module: 'cms',
       splitItems: true,
