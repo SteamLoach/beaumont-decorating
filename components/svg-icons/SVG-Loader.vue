@@ -32,6 +32,9 @@ import faciaSofits from '~/components/svg-icons/exterior/facia-sofits.vue';
 import garageDoor from '~/components/svg-icons/exterior/garage-door.vue';
 import exteriorRender from '~/components/svg-icons/exterior/exterior-render.vue';
 import woodenWindows from '~/components/svg-icons/exterior/wooden-windows.vue';
+
+//Utils
+import closeButton from '~/components/svg-icons/utils/close-button.vue';
   
 export default {
   
@@ -58,7 +61,8 @@ export default {
     phoneIcon,
     facebookIcon,
     locationIcon,
-    paperPlane
+    paperPlane,
+    closeButton,
   }
   
 }

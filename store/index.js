@@ -15,5 +15,11 @@ export const actions = {
       module: 'cms',
       splitItems: true,
     });
+    await dispatch('cms/getContentByModel', {
+      model: 'form',
+      mutation: 'cms/resolveToStore',
+      module: 'cms',
+      splitItems: true,
+    });
   },
 }

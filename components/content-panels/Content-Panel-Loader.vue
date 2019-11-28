@@ -14,6 +14,9 @@
 <script>
   
 import servicePanel from './service-panel.vue'
+import reviewPanel from './review-panel.vue'
+import recentProjectPanel from './recent-project-panel.vue'
+import slideGalleryPanel from './slide-gallery-panel.vue'
   
 export default {
   
@@ -21,6 +24,9 @@ export default {
   
   components: {
     servicePanel,
+    reviewPanel,
+    recentProjectPanel,
+    slideGalleryPanel,
   }
   
 }
@@ -33,6 +39,7 @@ export default {
     @include row(center, center);
     
     .content-panel {
+      @include row(center, center);
       @include pad-scale(
         x,
         $default: $space-lighter,
@@ -41,13 +48,16 @@ export default {
       );
       @include pad-scale(
         y,
-        $default: $space-lighter,
-        $on-tablet: $space-light,
-        $on-laptop: $space-medium,
+        $default: $space-heavy,
       ); 
     }
     
     .content-panel-title {
+      width: 100%;
+      @include pad-scale (
+        x,
+        $default: $space-lighter,
+      );
       @include pad-scale (
         bottom, 
         $default: $space-heavier,
