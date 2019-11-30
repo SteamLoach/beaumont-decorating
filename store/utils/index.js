@@ -2,7 +2,7 @@ export const state = () => ({
   
   reference: "utils",
   
-  lightBox: {
+  lightbox: {
     'is-active': false,
   }
 

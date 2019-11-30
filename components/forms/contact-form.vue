@@ -4,7 +4,7 @@
         :action="form.action"
         method="post"
         target="hidden_iframe"
-        onSubmit="formSuccess = true">
+        v-on:submit="postSubmit">
 
     <iframe name="hidden_iframe" 
             id="hidden_iframe" 
@@ -20,7 +20,7 @@
              :type="Object.keys(field.type)[0]"
              :required="field.required.yes"
              :placeholder="field.placeholder"
-             :name="field.endPoint"
+             :name="field.endpoint"
              v-model="formFields[field.id]" />
     </div>
     
@@ -40,19 +40,19 @@
     <textarea v-if="form.textArea.yes"
               :required="form.textAreaRequired.yes"
               :placeholder="form.textAreaPlaceholder"
+              :name="form.textAreaEndpoint"
               rows="5"
               v-model="formFields.textarea"></textarea>
     
     
     <input type="submit"
            value="Send"
-           :disabled="!canSubmit || itsATrap"
-           @click="submitSuccess"/>
+           :disabled="!canSubmit || itsATrap"/>
     
-    <p class="submit-success"
+    <div class="submit-success"
          :class="{'is-active': formSuccess}">
-      {{form.successMessage}}
-    </p>
+      {{form.successMessage}} 
+    </div>
     
   
   </form>
@@ -103,13 +103,14 @@ export default {
   
   methods: {
     submitSuccess: function() {
-      if (this.canSubmit || !this.itsATrap) {
+      Object.keys(this.formFields).forEach(field => {
+        this.formFields[field] = '';
         this.formSuccess = true;
-        Object.keys(this.formFields).forEach(field => {
-          this.formFields[field] = '';
-        });
-      }
-    }
+      }); 
+    },
+    postSubmit: function() {
+      setTimeout(this.submitSuccess, 1000);
+    },
   }
 }
 
@@ -171,18 +172,19 @@ export default {
   }
   
   .submit-success {
-    opacity: 0;
-    padding-top: $space-medium;
-    @include y-margin($space-light);
+    overflow: hidden;
+    @include container(center, center);
+    height: 0rem;
     text-align: center;
     color: darkgreen;
     font-weight: 600;
-    border: 2px solid darkgreen;
-    @include standard-transition(opacity);
+    @include standard-transition(all);
     cursor: default;
     
     &.is-active {
-      opacity: 1;
+      height: 3rem;
+      @include y-margin($space-light);
+      border: 2px solid darkgreen;
     }
   }
 

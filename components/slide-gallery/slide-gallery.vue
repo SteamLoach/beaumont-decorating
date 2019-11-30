@@ -1,19 +1,19 @@
 <template>
 
   <section class="slide-gallery">
-  
-    <image-lightbox :src="images[mxn_counter].url"></image-lightbox>
     
+    <!-- Slide Gallery -->
     <div class="image-aperture">
       <div class="image-strip"
            :style="stripPosition"
-           @click="isActive({target: 'lightBox', state: true})">
+           @click="isActive({target: 'lightbox', state: true})">
         <div v-for="item in images"
              :style="$setBackgroundImage(item.url)"
              class="image-slide"></div>
       </div>
     </div>
     
+    <!-- Slide Controls -->
     <div class="slide-controls">
       <div class="previous-image"
             @click="traverseDown">
@@ -24,6 +24,30 @@
             @click="traverseUp">
         <img src="~/assets/images/right-arrow-white.webp">
       </div>
+    </div>
+    
+    <!-- Lightbox -->
+    <div class="lightbox-outer"
+       :class="lightboxState">
+    
+      <div class="lightbox-close"
+           @click="isActive({target: 'lightbox', state: false})">
+        <SVG-Loader :icon="'close-button'"></SVG-Loader>
+      </div>
+      
+      <div class="lightbox-inner">
+        <img :src="mxn_traverseArray[mxn_counter].url"/>
+      </div>
+      
+      <div class="lightbox-next" 
+           @click="traverseUp">
+        &#8250;
+      </div>
+      <div class="lightbox-previous" 
+           @click="traverseDown">
+        &#8249;
+      </div>
+  
     </div>
   
   </section>
@@ -36,7 +60,6 @@
 
 import {isActive} from '~/mixins/isActive.js';
 import { traverseArray } from '~/mixins/traverseArray.js';
-import imageLightbox from '~/components/slide-gallery/image-lightbox.vue'
   
 export default {
   
@@ -44,16 +67,12 @@ export default {
   
   props: ['images'],
   
-  components: {
-    imageLightbox,
-  },
-  
   data() {
     return {
       mxn_counter: 0,
     }
   },
-  
+    
   computed: {
     
     mxn_traverseArray: function() {
@@ -62,9 +81,12 @@ export default {
     
     stripPosition: function() {
       return `left: -${this.mxn_counter * 100}%`
+    },
+    
+    lightboxState: function() {
+      return this.$store.state.utils.lightbox ;
     }
-  },
-  
+  },  
 }
 
 
@@ -73,6 +95,8 @@ export default {
 
 <style lang="scss">
   
+  
+  ////Slide Gallery
   .slide-gallery {
     position: relative;
     @include height-scale(
@@ -135,6 +159,97 @@ export default {
   
   .next-image {background-color: $brand-1;}
   .previous-image {background-color: $page-background;}
+  
+  
+  ////Lightbox
+  .lightbox-outer {
+    z-index: 999;
+    overflow: hidden;
+    position: fixed;
+    opacity: 0; 
+      top: 0;
+      left: 0;
+    height: 0%;
+    width: 0%;
+    background-color: rgba(#000, 0.9);
+    @include standard-transition();
+    
+    &.is-active {
+      display: block;
+      opacity: 1;
+      height: 100%;
+      width: 100%;
+      @include pad-scale(
+      xy,
+      $default: $space-lighter,
+      $on-phablet: $space-light,
+      $on-laptop: $space-medium,
+      $on-desktop: $space-heaviest,
+    );
+    }
+  }
+  
+  .lightbox-close {
+    z-index: 999;
+    position: absolute;
+      top: $space-light;
+      left: $space-light;
+    @include height-scale(
+      $default: 2rem,
+    );
+    @include custom-scale(
+      $default: 2rem,
+    );
+    &:hover {cursor: pointer;}
+    .svg-icon {
+      fill: $page-background;
+    }
+  }
+  
+  .lightbox-inner {
+    @include wrapper(center, center);
+    height: 100%;
+    width: 100%;
+    img {
+      border-radius: $border-radius;
+    }
+  }
+    
+  .lightbox-next,
+  .lightbox-previous {
+    z-index: 5;
+    position: absolute;
+    padding: $space-lighter;
+    @include font-size-scale(
+      $default: 4rem,
+      $on-tablet: 6rem,
+      $on-laptop: 8rem,
+    );
+    &:hover{cursor: pointer}
+  }
+  
+  .lightbox-next {
+    right: 0;
+    @include y-center-absolute();
+  }
+  .lightbox-previous {
+    left: 0;
+    @include y-center-absolute();
+  }
 
   
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
