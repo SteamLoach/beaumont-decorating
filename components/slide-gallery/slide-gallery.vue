@@ -70,6 +70,7 @@ export default {
   data() {
     return {
       mxn_counter: 0,
+      fader: false,
     }
   },
     
@@ -85,8 +86,8 @@ export default {
     
     lightboxState: function() {
       return this.$store.state.utils.lightbox ;
-    }
-  },  
+    },
+  }, 
 }
 
 
@@ -102,7 +103,7 @@ export default {
     @include height-scale(
       $default: 60vh,
       $on-tablet: 70vh,
-      $on-laptop: 65vh,
+      $on-laptop: 75vh,
       $on-desktop: 80vh,
     );
     @include column-scale(

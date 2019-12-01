@@ -4,6 +4,10 @@ export const state = () => ({
   
   lightbox: {
     'is-active': false,
+  },
+  
+  handheldNav: {
+    'is-active': false,
   }
 
 }) ; 

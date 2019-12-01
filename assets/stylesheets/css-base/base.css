@@ -131,6 +131,10 @@ time, mark, audio, video {
 /*******************
  Lists
  *******************/
+ul {
+  list-style: none;
+}
+
 /*******************
  Forms and buttons
  *******************/

@@ -36,7 +36,7 @@ export default {
   
   .header-inner {
     @include height-scale(
-      $default: 90vh,
+      $default: 100vh,
     );
     @include row(center, center);
     text-align: center;
@@ -49,7 +49,7 @@ export default {
           xy,
           $default: $space-lighter,
         );
-        color: $offset-font-color;
+        color: $shade-lightest;
       }
       
       h2 {font-weight: 300;}
