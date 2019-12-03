@@ -44,7 +44,11 @@ export default {
 
     
   .service-item {
-    @include content-card(medium);
+    @include content-card(
+      medium,
+      $is-shadowed: false,
+      $is-rounded: false,
+    );
     @include column-scale(
       $default: 22,
       $on-phablet: 20,

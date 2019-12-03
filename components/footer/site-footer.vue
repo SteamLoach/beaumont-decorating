@@ -18,6 +18,7 @@
               :key="item.key">
             <nuxt-link :to="item.route"> {{item.title}} </nuxt-link>
           </li>
+          <li @click="$scrollPage({target: 'body'})"> <span>Top</span>  </li>
         </ul>
       </section>
 
@@ -87,9 +88,10 @@ export default {
       @include wrapper(start, center, $no-wrap: true);
       padding-bottom: $space-lighter;
       
-      p, a {width: 100%;}
-      a {
+      p, a, span {width: 100%;}
+      a, span {
         &:hover {
+          cursor: pointer;
           text-decoration: underline;
         }
       }

@@ -46,6 +46,7 @@ export default {
       y,
       $default: $space-heavier,
     );
+    text-align: center;
     background-color: $page-background;
     @include standard-transition($function: linear);
     
@@ -53,15 +54,25 @@ export default {
       left: 0;
     }
     
+    
     a {
-      width: 100%;
       @include pad-scale(
         y,
-        $default: $space-light,
+        $default: $space-lightest,
       );
-      text-align: center;
+      @include margin-scale(
+        y,
+        $default: $outer-space-lightest
+      );
       color: $brand-1;
       font-size: 1.4rem;
+      border-bottom: $space-lightest solid transparent;
+      @include standard-transition(all);
+      
+      &:hover,
+      &.nuxt-link-exact-active {
+        border-color: $brand-1;
+      }
 
     }
   }

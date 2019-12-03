@@ -23,9 +23,24 @@ export const toCase = {
     },
 }
 
-
+//Returns a background image that can be used with :style
 const setBackgroundImage = function(url) {
   return {backgroundImage: `url('${url}')` } ; 
+}
+
+
+const scrollPage = function(obj = {target: '', axis: 'top', offset: false}) {
+  
+  let targetOffset = 0  
+  if (obj.offset) {
+    targetOffset = document.querySelector(obj.offset).clientHeight;
+  }
+  
+  window.scrollTo({
+    left: 0,
+    top: (document.querySelector(obj.target).getBoundingClientRect()[obj.axis] + pageYOffset) - targetOffset,
+    behavior: 'smooth',
+  });
 }
 
 const dateString = function(str) {
@@ -36,6 +51,7 @@ const dateString = function(str) {
 //Component Only
 Vue.prototype.$setBackgroundImage = setBackgroundImage;
 Vue.prototype.$dateString = dateString;
+Vue.prototype.$scrollPage = scrollPage;
 
 //Context Injection
 export default ({app}, inject) => {

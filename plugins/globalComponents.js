@@ -24,4 +24,9 @@ Vue.component('Content-Panel-Loader', ContentPanelLoader) ;
 Vue.component('SVG-Loader', SVGLoader) ;
 
 
+//Utils
+import scrollDownArrow from '~/components/page-header/scroll-down-arrow.vue';
+////
+Vue.component('scroll-down-arrow', scrollDownArrow);
+
 

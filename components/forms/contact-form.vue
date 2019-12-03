@@ -128,12 +128,15 @@ export default {
       $on-laptop: 16,
       $on-desktop: 14,
     );
+    
+    /*
     @include margin-scale(
       top,
       $default: $outer-space-light,
       $on-tablet: $outer-space-medium,
       $on-laptop: $outer-space-heavy
     );
+    */
     
     label,
     input {

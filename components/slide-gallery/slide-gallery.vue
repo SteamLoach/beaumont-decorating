@@ -17,12 +17,12 @@
     <div class="slide-controls">
       <div class="previous-image"
             @click="traverseDown">
-        <img src="~/assets/images/left-arrow.webp">
+        &#8592;
       </div>
 
       <div class="next-image"
             @click="traverseUp">
-        <img src="~/assets/images/right-arrow-white.webp">
+        &#8594;
       </div>
     </div>
     
@@ -41,11 +41,11 @@
       
       <div class="lightbox-next" 
            @click="traverseUp">
-        &#8250;
+        <span>&#8250;</span>
       </div>
       <div class="lightbox-previous" 
            @click="traverseDown">
-        &#8249;
+        <span>&#8249;</span>
       </div>
   
     </div>
@@ -155,10 +155,11 @@ export default {
     height: 4rem;
     width: 4rem;
     @include wrapper(center, center);
+    font-size: 2rem;
     &:hover {cursor: pointer;} 
   }
   
-  .next-image {background-color: $brand-1;}
+  .next-image {color: $offset-font-color; background-color: $brand-1;}
   .previous-image {background-color: $page-background;}
   
   

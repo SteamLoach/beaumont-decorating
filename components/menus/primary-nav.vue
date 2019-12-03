@@ -40,7 +40,6 @@ export default {
     
     &:hover {
       background-color: rgba($shade-light, $base-opacity);
-      @inlude under-shadow();
     }
   }
   
@@ -54,10 +53,18 @@ export default {
     
     a {
       width: 100%;
-      @include y-pad($space-light);
+      @include y-pad($space-lightest);
+      @include y-margin($outer-space-lightest);
       text-align: center;
       color: $brand-1;
       font-size: 1.2rem;
+      border-bottom: $space-lightest solid transparent;
+      @include standard-transition(all);
+      
+      &:hover,
+      &.nuxt-link-exact-active {
+        border-color: $brand-1;
+      }
     }
     
   }
