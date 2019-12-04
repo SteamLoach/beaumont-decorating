@@ -6,7 +6,9 @@
     <ul>
       <li v-for="item in handheldNav.menuItems"
           :key="item.key">
-        <nuxt-link :to="item.route"> {{item.title}} </nuxt-link>
+        <span @click="isActive({target: 'handheldNav', state: false})">
+          <nuxt-link :to="item.route"> {{item.title}} </nuxt-link>
+        </span>
       </li>
     </ul>
   
@@ -16,7 +18,11 @@
 
 <script>
 
+import {isActive}  from '~/mixins/isActive.js';
+  
 export default {
+  
+  mixins: [isActive],
   
   props: ['state'],
   

@@ -17,6 +17,7 @@ import servicePanel from './service-panel.vue'
 import reviewPanel from './review-panel.vue'
 import recentProjectPanel from './recent-project-panel.vue'
 import slideGalleryPanel from './slide-gallery-panel.vue'
+import teaserPanel from './teaser-panel.vue'
   
 export default {
   
@@ -27,6 +28,7 @@ export default {
     reviewPanel,
     recentProjectPanel,
     slideGalleryPanel,
+    teaserPanel,
   }
   
 }

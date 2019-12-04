@@ -74,6 +74,10 @@ html, body {
   overflow-x: hidden;
 }
 
+main {
+  min-height: 90vh;
+}
+
 h1,
 h2,
 h3,

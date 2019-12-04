@@ -5,9 +5,11 @@ import Vue from 'vue'
 //Content 
 import pageHeader from '~/components/page-header/page-header.vue' ;
 import slideGallery from '~/components/slide-gallery/slide-gallery.vue';
+import pageIntroPanel from '~/components/content-panels/page-intro-panel.vue';
 ////
 Vue.component('page-header', pageHeader) ;
 Vue.component('slide-gallery', slideGallery) ;
+Vue.component('page-intro-panel', pageIntroPanel) ;
 
 
 //Forms
