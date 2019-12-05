@@ -36,6 +36,7 @@ import woodenWindows from '~/components/svg-icons/exterior/wooden-windows.vue';
 //Utils
 import closeButton from '~/components/svg-icons/utils/close-button.vue';
 import downArrow from '~/components/svg-icons/utils/down-arrow.vue';
+import triangleIcon from '~/components/svg-icons/utils/triangle-icon.vue';
   
 export default {
   
@@ -65,6 +66,7 @@ export default {
     paperPlane,
     closeButton,
     downArrow,
+    triangleIcon,
   }
   
 }

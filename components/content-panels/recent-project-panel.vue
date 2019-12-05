@@ -6,9 +6,9 @@
     
     <div class="content-panel-inner">
       <div v-for="item in content.recentProjectItems"
-           class="recent-project-item">
+           class="recent-project-item"
+           :style="$setBackgroundImage(item.image.url)">
         <span class="hover-prompt"> + </span>
-        <img :src="item.image.url"/>
         <div class="caption-wrapper">
           <p> <span> {{ item.caption }} </span> </p>
         </div>
@@ -40,18 +40,22 @@ export default {
     .recent-project-item {
       position: relative;
       overflow: hidden;      
-
       @include column-scale(
         $default: 22,
         $on-phablet: 18,
         $on-tablet: 11,
         $on-laptop: 7
       );
+      @include pad-scale(
+        xy,
+        $default: $outer-space-heaviest, 
+      );
       @include margin-scale(
         bottom,
           $default: $outer-space-light,
           $on-tablet: $outer-space-medium
       );
+      @include centered-background();
       
       .hover-prompt {
         position: absolute;

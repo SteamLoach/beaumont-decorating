@@ -17,12 +17,12 @@
     <div class="slide-controls">
       <div class="previous-image"
             @click="traverseDown">
-        &#8592;
+        <SVG-Loader :icon="'triangle-icon'"></SVG-Loader>
       </div>
 
       <div class="next-image"
             @click="traverseUp">
-        &#8594;
+        <SVG-Loader :icon="'triangle-icon'"></SVG-Loader>
       </div>
     </div>
     
@@ -100,6 +100,7 @@ export default {
   ////Slide Gallery
   .slide-gallery {
     position: relative;
+    min-height: 350px;
     @include height-scale(
       $default: 60vh,
       $on-tablet: 70vh,
@@ -155,12 +156,24 @@ export default {
     height: 4rem;
     width: 4rem;
     @include wrapper(center, center);
-    font-size: 2rem;
     &:hover {cursor: pointer;} 
+    .svg-icon {
+      width: 1rem;
+      margin: 0;
+    }
   }
   
-  .next-image {color: $offset-font-color; background-color: $brand-1;}
-  .previous-image {background-color: $page-background;}
+  .next-image {
+    background-color: $brand-1;
+    .svg-icon {fill: $offset-font-color;}
+  }
+  .previous-image {
+    background-color: $page-background;
+    .svg-icon {
+      fill: $font-color;
+      transform: rotate(180deg);
+    }
+  }
   
   
   ////Lightbox

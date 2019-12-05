@@ -48,20 +48,12 @@ export default {
   .teaser-panel {
     
     @include margin-scale(
-      y,
-      $default: $outer-space-light,
-      $on-tablet: $outer-space-heavy,
+      top,
       $on-laptop: $outer-space-heavier,
     );
   }
   
   .teaser-item {
-    
-    @include height-scale(
-      $default: 300px,
-      $on-phablet: 350px,
-      $on-tablet: 375px,
-      )
     @include column-scale(
       $default: 22,
       $on-phablet: 18,
@@ -81,7 +73,6 @@ export default {
   
   .teaser-item-inner {
     @include wrapper(center, center);
-    height: 100%;
     width: 100%;
     text-align: center;
     color: $offset-font-color;
@@ -89,22 +80,34 @@ export default {
     @include standard-transition();
     &:hover {background-color: rgba(#000, 0.8);}
     
-    h3 {
-      width: 100%;
-      padding-bottom: $space-medium;
-      font-size: 2rem;
-      color: $offset-font-color;
-    }
+    .teaser-title {
     
-    button {
-      padding: $space-lighter;
-      border: 2px solid $offset-font-color;
-      border-radius: $border-radius;
-      &:hover {
-        color: $font-color;
-        background-color: $offset-font-color;
+      @include margin-scale(
+        y,
+        $default: $outer-space-heavier,
+        $on-laptop: 6rem,
+      );
+      
+      h3 {
+        width: 100%;
+        padding-bottom: $space-medium;
+        font-size: 2rem;
+        color: $offset-font-color;
       }
+    
+      button {
+        padding: $space-lighter;
+        border: 2px solid $offset-font-color;
+        border-radius: $border-radius;
+        &:hover {
+          color: $font-color;
+          background-color: $offset-font-color;
+        }
     }
+      
+      
+    }
+
   }
 
 </style>

@@ -30,7 +30,7 @@ export default {
     @include row(center, center);
     
     .page-intro-inner {
-      @include row(center, start);
+      @include row(center, center);
       @include x-from($laptop, between);
       max-width: 1400px;
       @include pad-scale(
@@ -56,10 +56,7 @@ export default {
     }
   
     .page-intro-wrapper {
-      @include pad-scale(
-        right,
-        $on-laptop: $space-heaviest,
-      );
+      @include pad-from($laptop, right, $space-heaviest);
       font-size: 1rem;
       @include text-align-until($laptop, center);
       
