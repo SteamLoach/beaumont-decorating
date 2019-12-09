@@ -114,13 +114,15 @@ export default {
       bottom,
       $default: $outer-space-medium,
     );
-    @include content-card(medium);
+    
   }
   
   .image-aperture {
     height: 100%;
     width: 100%;
     overflow: hidden;
+    border-radius: $border-radius;
+    @include under-shadow();
   }
   
   .image-strip {
@@ -144,7 +146,7 @@ export default {
   
   .slide-controls {
     position: absolute;
-      bottom: -1rem;
+      bottom: -1.5rem;
     @include x-center-absolute();
     @include wrapper(center, center, $no-wrap: true);
     @include under-shadow();
@@ -153,12 +155,12 @@ export default {
   .next-image,
   .previous-image {
     z-index: 1;
-    height: 4rem;
-    width: 4rem;
+    height: 3rem;
+    width: 3rem;
     @include wrapper(center, center);
     &:hover {cursor: pointer;} 
     .svg-icon {
-      width: 1rem;
+      width: 0.8rem;
       margin: 0;
     }
   }

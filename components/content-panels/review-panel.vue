@@ -41,7 +41,7 @@ export default {
 <style lang="scss">
 
   .review-panel {
-    background-color: $shade-light;
+    background-color: $brand-shade-2;
     
     .review-item {
       @include column-scale(
