@@ -1,5 +1,5 @@
 import { toCase } from './plugins/utils.js';
-const env = require('dotenv').config()
+//const env = require('dotenv').config()
 
 
 export default {
@@ -61,7 +61,7 @@ export default {
     scss: ['assets/stylesheets/main.scss']
   },
   kenticokontent: {
-    projectId: process.env.KENTICO_PROJECT_ID,
+    projectId: "2fa7a314-d0bb-001c-d636-065df5831621",
     enableAdvancedLogging: false,
     //previewApiKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxx',
     //enablePreviewMode: true,
