@@ -6,7 +6,7 @@
     <div class="image-aperture">
       <div class="image-strip"
            :style="stripPosition"
-           @click="isActive({target: 'lightbox', state: true})">
+           @click="toggleModal('lightbox')">
         <div v-for="item in images"
              :style="$setBackgroundImage(item.url)"
              class="image-slide"></div>
@@ -17,21 +17,21 @@
     <div class="slide-controls">
       <div class="previous-image"
             @click="traverseDown">
-        <SVG-Loader :icon="'triangle-icon'"></SVG-Loader>
+        <SVG-Loader :icon="'horizontal-arrow'"></SVG-Loader>
       </div>
 
       <div class="next-image"
             @click="traverseUp">
-        <SVG-Loader :icon="'triangle-icon'"></SVG-Loader>
+        <SVG-Loader :icon="'horizontal-arrow'"></SVG-Loader>
       </div>
     </div>
     
     <!-- Lightbox -->
     <div class="lightbox-outer"
-       :class="lightboxState">
+       :class="{'is-active': Modals.lightbox}">
     
       <div class="lightbox-close"
-           @click="isActive({target: 'lightbox', state: false})">
+           @click="toggleModal('lightbox')">
         <SVG-Loader :icon="'close-button'"></SVG-Loader>
       </div>
       
@@ -58,19 +58,18 @@
 
 <script>
 
-import {isActive} from '~/mixins/isActive.js';
 import { traverseArray } from '~/mixins/traverseArray.js';
+import {modalState} from '~/mixins/modalState.js';
   
 export default {
   
-  mixins: [isActive, traverseArray],
+  mixins: [traverseArray, modalState],
   
   props: ['images'],
   
   data() {
     return {
       mxn_counter: 0,
-      fader: false,
     }
   },
     
@@ -84,9 +83,6 @@ export default {
       return `left: -${this.mxn_counter * 100}%`
     },
     
-    lightboxState: function() {
-      return this.$store.state.utils.lightbox ;
-    },
   }, 
 }
 
@@ -118,18 +114,15 @@ export default {
   }
   
   .image-aperture {
-    height: 100%;
-    width: 100%;
+    @include xy-size(100%);
     overflow: hidden;
     border-radius: $border-radius;
-    @include under-shadow();
+    @include shadow($under-shadow);
   }
   
   .image-strip {
-    height: 100%;
-    @include container(start,center);
-    flex-wrap: nowrap;
-    width: 100%;
+    @include container(start,center,$no-wrap: true);
+    @include xy-size(100%);
     @include standard-transition(
       $duration: 0.8s,
       $function: ease-out,
@@ -149,53 +142,42 @@ export default {
       bottom: -1.5rem;
     @include x-center-absolute();
     @include wrapper(center, center, $no-wrap: true);
-    @include under-shadow();
+    @include shadow($under-shadow);
   }
   
   .next-image,
   .previous-image {
     z-index: 1;
-    height: 3rem;
-    width: 3rem;
+    @include xy-size(3rem);
     @include wrapper(center, center);
     &:hover {cursor: pointer;} 
     .svg-icon {
-      width: 0.8rem;
+      width: 1rem;
       margin: 0;
     }
   }
   
   .next-image {
     background-color: $brand-1;
-    .svg-icon {fill: $offset-font-color;}
+    .svg-icon {
+      fill: $offset-font-color;
+      transform: rotate(180deg);
+    }
   }
   .previous-image {
     background-color: $page-background;
     .svg-icon {
       fill: $font-color;
-      transform: rotate(180deg);
     }
   }
   
   
   ////Lightbox
   .lightbox-outer {
-    z-index: 999;
-    overflow: hidden;
-    position: fixed;
-    opacity: 0; 
-      top: 0;
-      left: 0;
-    height: 0%;
-    width: 0%;
-    background-color: rgba(#000, 0.9);
+    @include fullscreen-overlay();
     @include standard-transition();
     
     &.is-active {
-      display: block;
-      opacity: 1;
-      height: 100%;
-      width: 100%;
       @include pad-scale(
       xy,
       $default: $space-lighter,

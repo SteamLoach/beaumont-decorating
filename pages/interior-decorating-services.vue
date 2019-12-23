@@ -19,7 +19,12 @@
 
 <script>
 
+import {metaData} from '~/mixins/metaData';
+  
 export default {
+  
+  mixins: [metaData],
+  
   computed: {
     Page: function() {
       return this.$store.state.cms.interiorServices;

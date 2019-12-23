@@ -1,11 +1,15 @@
 <template>
-  <div>
+  <div class="site-wrapper">
+    
     <primary-nav></primary-nav>
-    <handheld-nav :state="handheldNavState"></handheld-nav>
-    <span class="handheld-nav-toggle-wrapper"
-          @click="isActiveToggle('handheldNav')">
-      <handheld-nav-toggle :state="handheldNavState"></handheld-nav-toggle>
-    </span>
+    
+    <handheld-nav></handheld-nav>
+    
+    <div class="handheld-nav-toggle"
+         @click="toggleModal('handheldNav')">
+      <SVG-Loader :icon="'menu-button'"></SVG-Loader>
+    </div>
+        
     <nuxt />
     <site-footer></site-footer>
   </div>
@@ -18,11 +22,11 @@ import handheldNav from '~/components/menus/handheld-nav.vue';
 import handheldNavToggle from '~/components/menus/handheld-nav-toggle.vue';
 import siteFooter from '~/components/footer/site-footer.vue';
 
-import {isActive} from '~/mixins/isActive.js';
+import {modalState} from '~/mixins/modalState.js';
   
 export default {
   
-  mixins: [isActive],
+  mixins: [modalState],
   
   components: {
     primaryNav,
@@ -32,9 +36,10 @@ export default {
   },
   
   computed: {
-    handheldNavState: function() {
-      return this.$store.state.utils.handheldNav;
-    }
+    Utils: function() {
+      return this.$store.state.utils;
+    },
+        
   }
   
 }
@@ -42,7 +47,30 @@ export default {
 </script>
 
 <style lang="scss">
-
+  
+  html {@include html-base();}
+  
+  .site-wrapper {
+    position: relative;
+  }
+  
+  .handheld-nav-toggle {
+    z-index: 1;
+    position: fixed;
+      right: 0;
+    @include hidden-from($laptop);
+    @include xy-size($space-heavy);
+    @include margin-scale(
+      xy,
+      $default: $space-light,
+      $on-tablet: $outer-space-lightest,
+    );
+    &:hover {cursor: pointer;}
+    .svg-icon {
+      fill: $brand-1;
+    }
+  }
+  
   .handheld-nav-toggle-wrapper {
     z-index: 999;
     position: fixed;

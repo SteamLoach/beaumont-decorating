@@ -91,3 +91,6 @@ sw.*
 
 # CMS config file
 cms.config.js
+
+#env file
+.env

@@ -60,24 +60,21 @@ export default {
         x,
         $default: $space-lighter,
       );
-      @include pad-scale (
-        bottom, 
-        $default: $space-heavier,
-      );
+      padding-bottom: $space-light;
       text-align: center;
       span {
-        @include underline-span(
-          $height: 5px,
-          $width: 75%,
-          $centered: true,
+        @include pseudo-span(
+          $has-height: 5px,
+          $has-width: 75%,
+          $has-spacing: $space-light,
+          $is-centered: true,
         );
-        padding-bottom: $space-medium;
       }
     }
     
     .content-panel-inner {
       @include row(around, stretch);
-      max-width: $max-content-width;
+      max-width: $standard-content-width;
     }
 
     

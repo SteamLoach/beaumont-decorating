@@ -41,7 +41,7 @@ export default {
   
   .content-panel.teaser-panel {
     .content-panel-inner {
-      max-width: 1400px;
+      max-width: $wide-content-width;
     }
   }
   

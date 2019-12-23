@@ -44,28 +44,26 @@ export default {
   }
   
   .nav-item-wrapper {
+    @include inline-menu(
+      $link-color: $brand-1,
+      $link-pad: $space-lighter,
+    );
     @include hidden-until($laptop);
-    @include wrapper(around, center);
     @include column-scale(
       $default: 20,
       $on-desktop: 16,
     );
+    padding-top: $space-lighter;
     
     a {
-      width: 100%;
-      @include y-pad($space-lightest);
-      @include y-margin($outer-space-lightest);
-      text-align: center;
-      color: $brand-1;
-      font-size: 1.2rem;
       border-bottom: $space-lightest solid transparent;
       @include standard-transition(all);
-      
       &:hover,
       &.nuxt-link-exact-active {
         border-color: $brand-1;
       }
     }
+    
     
   }
 

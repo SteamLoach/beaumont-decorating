@@ -2,7 +2,7 @@
   
     <div class="nav-toggle-wrapper">
       <div class="nav-toggle"
-           :class="state"></div>
+           :class="{'is-active': state}"></div>
     </div>
 
 </template>

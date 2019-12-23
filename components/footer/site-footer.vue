@@ -2,8 +2,8 @@
 
   <footer class="site-footer">
     <div class="site-footer-inner">
-      <section class="footer-column contact">
-        <ul>
+      <section class="footer-column">
+        <ul class="contact">
           <li v-for="item in siteFooter.contactColumn"
               :key="item.key">
             <SVG-Loader :icon="item.icon"></SVG-Loader>
@@ -12,8 +12,8 @@
         </ul>
       </section>
 
-      <section class="footer-column quicklinks">
-        <ul>
+      <section class="footer-column">
+        <ul class="quicklinks">
           <li v-for="item in siteFooter.quicklinkColumn"
               :key="item.key">
             <nuxt-link :to="item.route"> {{item.title}} </nuxt-link>
@@ -22,8 +22,8 @@
         </ul>
       </section>
 
-      <section class="footer-column credits">
-        <ul>
+      <section class="footer-column">
+        <ul class="credits">
           <li v-for="item in siteFooter.creditColumn"
               :key="item.key"
               v-html="item.text">
@@ -69,7 +69,7 @@ export default {
   
   .site-footer-inner {
     @include row(between, start);
-    max-width: $max-content-width;
+    max-width: $standard-content-width;
     @include pad-scale(
       y,
       $space-light,
@@ -80,32 +80,36 @@ export default {
     @include column-scale (
       $default: 24,
       $on-laptop: 8,
-      
     );
     padding: $space-light;
     
-    li {
-      @include wrapper(start, center, $no-wrap: true);
-      padding-bottom: $space-lighter;
+    ul {
+      @include column-menu(
+        $link-width: 100%,
+        $link-align: left,
+        $link-color: $offset-font-color,
+        $link-size: 1rem,
+      );
       
-      p, a, span {width: 100%;}
+      li {
+        @include wrapper(start, center, $no-wrap: true);
+      }
+      
+      &.quicklinks {
+      @include text-align-from($laptop, center);
+      }
+    
+      &.credits {
+      @include text-align-from($laptop, right);
+      }
+    }
+    
       a, span {
         &:hover {
           cursor: pointer;
           text-decoration: underline;
         }
-      }
-    }
-    
-    
-    &.quicklinks {
-      @include text-align-from($laptop, center);
-    }
-    
-    &.credits {
-      @include text-align-from($laptop, right);
-    }
-    
+      } 
   }
   
   

@@ -2,12 +2,10 @@ export const state = () => ({
   
   reference: "utils",
   
-  lightbox: {
-    'is-active': false,
-  },
+  ///
+  scrollPosition: '',
   
-  handheldNav: {
-    'is-active': false,
-  }
+  lightbox: false,
+  handheldNav: false,
 
 }) ; 

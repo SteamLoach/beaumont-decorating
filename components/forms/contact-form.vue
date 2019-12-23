@@ -1,7 +1,8 @@
 <template>
 
   <form class="contact-form"
-        :action="form.action"
+        name="Contact Form"
+        data-netlify="true"
         method="post"
         target="hidden_iframe"
         v-on:submit="postSubmit">
@@ -120,7 +121,7 @@ export default {
 <style lang="scss">
 
   .contact-form {
-    @include content-card(medium);
+    @include card($medium-card...);
     @include column-scale(
       $default: 24,
       $on-phablet: 22,

@@ -1,11 +1,15 @@
 export default {
   
   isActive(state, dir) {
-    state[dir.target]['is-active'] = dir.state;
+    state[dir.target] = dir.state;
   },
   
   isActiveToggle(state, target) {
-    state[target]['is-active'] = !state[target]['is-active'] ;
+    state[target] = !state[target] ;
+  },
+  
+  setScrollPosition(state, val) {
+    state.scrollPosition = val;
   }
   
 }

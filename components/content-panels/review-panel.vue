@@ -56,7 +56,7 @@ export default {
       font-size: 0.8rem;
 
       .review-body {
-        @include content-card(medium);
+        @include card($medium-card...);
       }
 
       .review-footer {

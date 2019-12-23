@@ -1,12 +1,17 @@
 <template>
 
   <nav class="handheld-nav"
-       :class="state">
+       :class="{'is-active': Modals.handheldNav}">
   
-    <ul>
+    <div class="handheld-nav-close"
+         @click="toggleModal('handheldNav')">
+      <SVG-Loader :icon="'thick-menu-close'"></SVG-Loader>
+    </div>
+    
+    <ul class="handheld-nav-links">
       <li v-for="item in handheldNav.menuItems"
           :key="item.key">
-        <span @click="isActive({target: 'handheldNav', state: false})">
+        <span @click="toggleModal('handheldNav', 0)">
           <nuxt-link :to="item.route"> {{item.title}} </nuxt-link>
         </span>
       </li>
@@ -18,13 +23,12 @@
 
 <script>
 
-import {isActive}  from '~/mixins/isActive.js';
+
+import {modalState} from '~/mixins/modalState.js';
   
 export default {
   
-  mixins: [isActive],
-  
-  props: ['state'],
+  mixins: [modalState],
   
   computed: {
     handheldNav: function() {
@@ -39,48 +43,46 @@ export default {
 <style lang="scss">
 
   .handheld-nav {
-    z-index: 10;
-    overflow-y: scroll;
-    position: fixed;
-      top: 0;
-      left: -100%;
-    height: 100vh;
+    @include slide-in-modal(
+      $in-from: right,
+    );
     @include column-scale(
       $default: 24,
-    );
-    @include pad-scale(
-      y,
-      $default: $space-heavier,
     );
     text-align: center;
     background-color: $page-background;
     @include standard-transition($function: linear);
-    
-    &.is-active {
-      left: 0;
-    }
-    
-    
-    a {
-      @include pad-scale(
-        y,
-        $default: $space-lightest,
-      );
-      @include margin-scale(
-        y,
-        $default: $outer-space-lightest
-      );
-      color: $brand-1;
-      font-size: 1.4rem;
-      border-bottom: $space-lightest solid transparent;
-      @include standard-transition(all);
-      
-      &:hover,
-      &.nuxt-link-exact-active {
-        border-color: $brand-1;
-      }
-
+  }
+  
+  .handheld-nav-close {
+    @include wrapper(end, center);
+    @include pad-scale(
+      xy,
+      $default: $space-light,
+    );
+    &:hover {cursor: pointer};
+    .svg-icon { 
+      @include xy-size($space-heavy);
+      fill: $brand-1;
     }
   }
+  
+  .handheld-nav-links {
+    @include column-menu(
+      $link-size: 1.4rem,
+      $link-color: $brand-1,
+    );
+    
+      a {
+        @include y-margin($outer-space-lightest);
+        border-bottom: $space-lightest solid transparent;
+        @include standard-transition(all);
+        
+        &:hover,
+        &.nuxt-link-exact-active {
+        border-color: $brand-1;
+        }
+      } 
+    }
 
 </style>

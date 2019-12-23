@@ -1,12 +1,12 @@
-import { CMS } from './cms/cms.config.js';
 import { toCase } from './plugins/utils.js';
+const env = require('dotenv').config()
 
 
 export default {
   mode: 'universal',
   
   router: {
-    base: process.env.DEPLOY_ENV === 'STATIC' ? '/beaumont-decorating/' : '/'
+    base: '/'
   },
   /*
   ** Headers of the page
@@ -31,7 +31,7 @@ export default {
   ** Global CSS
   */
   css: [
-    '~assets/stylesheets/css-base/base.css'
+    'culverin-scss/css-base/base.css',
   ],
   /*
   ** Plugins to load before mounting the App
@@ -45,6 +45,7 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    '@nuxtjs/dotenv',
   ],
   /*
   ** Nuxt.js modules
@@ -59,7 +60,7 @@ export default {
     scss: ['assets/stylesheets/main.scss']
   },
   kenticokontent: {
-    projectId: CMS.KEY,
+    projectId: process.env.KENTICO_PROJECT_ID,
     enableAdvancedLogging: false,
     //previewApiKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxx',
     //enablePreviewMode: true,

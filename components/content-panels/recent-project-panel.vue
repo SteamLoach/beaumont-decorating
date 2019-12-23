@@ -89,7 +89,10 @@ export default {
         p {
           padding: $space-heavy;
           span {
-            @include underline-span($width: 75%)
+            @include pseudo-span(
+              $has-width: 75%,
+              $has-spacing: $space-lighter,
+              )
             }
         }
       }

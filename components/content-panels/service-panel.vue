@@ -44,10 +44,10 @@ export default {
 
     
   .service-item {
-    @include content-card(
-      medium,
-      $is-shadowed: false,
-      $is-rounded: false,
+    @include card(
+      $medium-card...,
+      $has-shadow: false,
+      $has-border-radius: false,
     );
     @include column-scale(
       $default: 22,
@@ -60,11 +60,13 @@ export default {
         $default: $outer-space-light,
         $on-tablet: $outer-space-medium
       );
-    
+      
+      h3 {padding-bottom: 0;}
       h3 span {
-        @include underline-span(
-          $height: 5px,
-          $fill: $shade-light,
+        @include pseudo-span(
+          $has-height: 5px,
+          $has-fill: $shade-light,
+          $has-spacing: $space-lighter,
         );
       }
       

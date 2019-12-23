@@ -37,6 +37,10 @@ import woodenWindows from '~/components/svg-icons/exterior/wooden-windows.vue';
 import closeButton from '~/components/svg-icons/utils/close-button.vue';
 import downArrow from '~/components/svg-icons/utils/down-arrow.vue';
 import triangleIcon from '~/components/svg-icons/utils/triangle-icon.vue';
+import menuButton from '~/components/svg-icons/utils/menu-button.vue';
+import menuClose from '~/components/svg-icons/utils/menu-close.vue';
+import thickMenuClose from '~/components/svg-icons/utils/thick-menu-close.vue';
+import horizontalArrow from '~/components/svg-icons/utils/horizontal-arrow';
   
 export default {
   
@@ -67,6 +71,10 @@ export default {
     closeButton,
     downArrow,
     triangleIcon,
+    menuButton,
+    menuClose,
+    thickMenuClose,
+    horizontalArrow,
   }
   
 }

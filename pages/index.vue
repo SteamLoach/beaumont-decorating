@@ -18,7 +18,11 @@
 
 <script>
 
+import {metaData} from '~/mixins/metaData';
+  
 export default {
+  
+  mixins: [metaData],
   
   computed: {
     Page: function() {
@@ -26,8 +30,7 @@ export default {
     },
     ContactForm: function() {
       return this.$store.state.cms.contactForm;
-    }
-    
+    }    
   }
   
 }

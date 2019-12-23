@@ -16,8 +16,12 @@
 
 
 <script>
+  
+import {metaData} from '~/mixins/metaData';
 
 export default {
+  
+  mixins: [metaData],
   
   computed: {
     Page: function() {

@@ -24,7 +24,19 @@
 
 <script>
 
+  
 export default {
+  
+  head() {
+    return {
+      title: "Contact | Beaumont Decorating Chesterfield",
+      meta: [
+        { hid: 'description', name: 'description', content: "test test" }
+      ]
+      
+    }
+  },
+  
   computed: {
     ContactForm: function() {
       return this.$store.state.cms.contactForm;
@@ -67,7 +79,7 @@ export default {
     }
     
     .contact-details {
-      @include content-card(medium);
+      @include card($medium-card...);
       @include column-scale(
         $default: 22, 
         $on-tablet: 18,

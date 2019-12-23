@@ -3,7 +3,7 @@
   <section class="page-intro-panel">
     <div class="page-intro-inner">
       <article class="page-intro-wrapper">
-        <h2> {{content.title}} </h2>
+        <h2> <span> {{content.title}} </span> </h2>
         <p> {{content.intro}} </p>
       </article>
       <slot></slot>
@@ -32,7 +32,7 @@ export default {
     .page-intro-inner {
       @include row(center, center);
       @include x-from($laptop, between);
-      max-width: 1400px;
+      max-width: $wide-content-width;
       @include pad-scale(
         x,
         $default: $space-lighter,
@@ -60,24 +60,26 @@ export default {
       font-size: 1rem;
       @include text-align-until($laptop, center);
       
-      h2 {
-        @include underline-span-until(
+      h2 span {
+        @include pseudo-span-from(
           $laptop,
-          $width: 50%,
-          $centered: true,
+          $has-width: 75%,
+          $has-spacing: $space-medium,
         );
-        @include underline-span-from(
+        
+        @include pseudo-span-until(
           $laptop,
-          $width: 75%,
+          $has-width: 50%,
+          $is-centered: true,
+          $has-spacing: $space-medium,
         );
       }
       
-      h2, p {
+      p {
         @include pad-scale(
           bottom,
           $default: $space-light,
         );
-        margin-bottom: $space-light;
       }
     }
     
@@ -88,7 +90,7 @@ export default {
     
     .page-intro-image {
       border-radius: $border-radius;
-      @include under-shadow();
+      @include shadow($under-shadow);
     }
   }
 

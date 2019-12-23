@@ -57,6 +57,7 @@ export default {
       h1 {
         @include font-size-scale(
           $default: 2rem,
+          $on-phablet: 2.4rem,
           $on-tablet: 2.6rem,
           $on-laptop: 3.2rem,
         );
