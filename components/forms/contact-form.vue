@@ -1,10 +1,10 @@
 <template>
 
   <form class="contact-form"
-        name="Contact Form"
-        data-netlify="true"
+        :action="form.action"
         method="post"
-        target="hidden_iframe">
+        target="hidden_iframe"
+        v-on:submit="postSubmit">
 
     <iframe name="hidden_iframe" 
             id="hidden_iframe" 
