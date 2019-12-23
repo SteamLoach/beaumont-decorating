@@ -4,8 +4,7 @@
         name="Contact Form"
         data-netlify="true"
         method="post"
-        target="hidden_iframe"
-        v-on:submit="postSubmit">
+        target="hidden_iframe">
 
     <iframe name="hidden_iframe" 
             id="hidden_iframe" 

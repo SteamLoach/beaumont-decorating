@@ -61,7 +61,7 @@ export default {
     scss: ['assets/stylesheets/main.scss']
   },
   kenticokontent: {
-    projectId: "2fa7a314-d0bb-001c-d636-065df5831621",
+    projectId: process.env.KENTICO_PROJECT_ID,
     enableAdvancedLogging: false,
     //previewApiKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxx',
     //enablePreviewMode: true,
