@@ -32,6 +32,7 @@ export default {
   */
   css: [
     'culverin-scss/css-base/base.css',
+    //'../culverin-scss/css-base/base.css',
   ],
   /*
   ** Plugins to load before mounting the App
