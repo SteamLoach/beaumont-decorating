@@ -7,17 +7,24 @@
         method="post"
         target="hidden_iframe"
         v-on:submit="postSubmit">
-
+    
+    
+    <!-- Same Page Target -->
     <iframe name="hidden_iframe" 
             id="hidden_iframe" 
             style="display:none;"></iframe>
-  
+    <!-- End Same Page Target -->
+    
+    
     <h2> {{form.title}} </h2>
+    
     
     <!-- Netlify Form Name Prop -->
     <input type="hidden" name="form-name" value="contact-form" />
     <!-- -->
     
+    
+    <!-- Form Fields -->
     <div v-for="field in form.formFields"
          class="form-field">
       <label v-if="form.showLabels.yes"
@@ -29,37 +36,44 @@
              :name="field.endpoint"
              v-model="formFields[field.id]" />
     </div>
+    <!-- End Form Fields -->
     
-    <label class="honeypot"
-           name="bot-field"
-           for="paranoidandroid" 
-           style="display: none;">
-      I see you
-    </label>
-    <input  v-model="honeyPot"
-            class="honeypot"
-            type="text"
-            id="paranoidandroid"
-            name="paranoidandroid"
-            placeholder="sneaky sneaky"
-            style="display: none;"/>
     
+    <!-- Text Area -->
     <textarea v-if="form.textArea.yes"
               :required="form.textAreaRequired.yes"
               :placeholder="form.textAreaPlaceholder"
               :name="form.textAreaEndpoint"
               rows="5"
               v-model="formFields.textarea"></textarea>
+    <!-- End Text Area -->
     
     
+    <!-- Bot Field -->
+    <input  v-model="honeyPot"
+            class="honeypot"
+            name="bot-field"
+            type="text"
+            id="paranoidandroid"
+            name="paranoidandroid"
+            placeholder="sneaky sneaky"
+            style="display: none;"/>
+    <!-- End Bot Field -->
+    
+    
+    <!-- Submit Button -->
     <input type="submit"
            value="Send"
            :disabled="!canSubmit || itsATrap"/>
+    <!-- End Submit Button -->
     
+    
+    <!-- Same Page Success Message -->
     <div class="submit-success"
          :class="{'is-active': formSuccess}">
       {{form.successMessage}} 
     </div>
+    <!-- End Same Page Success Message -->
     
   
   </form>
