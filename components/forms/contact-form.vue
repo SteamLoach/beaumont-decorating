@@ -2,7 +2,7 @@
 
   <form data-netlify="true"
         class="contact-form"
-        name="contact-form"
+        :name="form.name"
         data-netlify-honeypot="bot-field"
         method="post"
         target="hidden_iframe"
@@ -20,7 +20,7 @@
     
     
     <!-- Netlify Form Name Prop -->
-    <input type="hidden" name="form-name" value="contact-form" />
+    <input type="hidden" name="form-name" :value="form.name" />
     <!-- -->
     
     
