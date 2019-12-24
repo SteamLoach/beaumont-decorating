@@ -55,7 +55,6 @@
             name="bot-field"
             type="text"
             id="paranoidandroid"
-            name="paranoidandroid"
             placeholder="sneaky sneaky"
             style="display: none;"/>
     <!-- End Bot Field -->

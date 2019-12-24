@@ -56,7 +56,7 @@ export default {
     }
   
     .page-intro-wrapper {
-      @include pad-from($laptop, right, $space-heaviest);
+      @include pad-from($laptop, $right: $space-heaviest,);
       font-size: 1rem;
       @include text-align-until($laptop, center);
       
