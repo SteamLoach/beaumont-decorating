@@ -1,7 +1,9 @@
 <template>
 
-  <form class="contact-form"
-        :action="form.action"
+  <form data-netlify="true"
+        class="contact-form"
+        name="contact-form"
+        data-netlify-honeypot="bot-field"
         method="post"
         target="hidden_iframe"
         v-on:submit="postSubmit">
@@ -11,6 +13,10 @@
             style="display:none;"></iframe>
   
     <h2> {{form.title}} </h2>
+    
+    <!-- Netlify Form Name Prop -->
+    <input type="hidden" name="form-name" value="contact-form" />
+    <!-- -->
     
     <div v-for="field in form.formFields"
          class="form-field">
@@ -25,6 +31,7 @@
     </div>
     
     <label class="honeypot"
+           name="bot-field"
            for="paranoidandroid" 
            style="display: none;">
       I see you
