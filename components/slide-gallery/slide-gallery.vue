@@ -8,7 +8,7 @@
            :style="stripPosition"
            @click="toggleModal('lightbox')">
         <div v-for="item in images"
-             :style="$setBackgroundImage(item.url)"
+             :style="$setBackgroundImage(item.image)"
              class="image-slide"></div>
       </div>
     </div>
@@ -36,7 +36,7 @@
       </div>
       
       <div class="lightbox-inner">
-        <img :src="mxn_traverseArray[mxn_counter].url"/>
+        <img :src="mxn_traverseArray[mxn_counter].image"/>
       </div>
       
       <div class="lightbox-next" 

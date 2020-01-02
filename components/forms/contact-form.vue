@@ -1,8 +1,9 @@
 <template>
 
-  <form data-netlify="true"
+  <form v-editable="form"
+        data-netlify="true"
         class="contact-form"
-        :name="form.name"
+        :name="form.form_name"
         data-netlify-honeypot="bot-field"
         method="post"
         target="hidden_iframe"
@@ -20,34 +21,34 @@
     
     
     <!-- Netlify Form Name Prop -->
-    <input type="hidden" name="form-name" :value="form.name" />
+    <input type="hidden" name="form-name" :value="form.form_name" />
     <!-- -->
     
     
     <!-- Form Fields -->
-    <div v-for="field in form.formFields"
+    <div v-for="field in form.form_fields"
+         v-editable="field"
          class="form-field">
-      <label v-if="form.showLabels.yes"
+      <label v-if="form.show_labels.true"
              :for="field.id"> {{field.label}} </label>
-      <input :id="field.id"
-             :type="Object.keys(field.type)[0]"
-             :required="field.required.yes"
+      
+      <textarea v-if="field.type === 'textarea'"
+              :required="field.required.true"
+              :placeholder="field.placeholder"
+              :name="field.name"
+              rows="5"
+              v-model="formFields[field.id]"></textarea>
+      
+      <input v-else
+             :id="field.id"
+             :type="field.type"
+             :required="field.required.true"
              :placeholder="field.placeholder"
-             :name="field.endpoint"
+             :name="field.name"
              v-model="formFields[field.id]" />
     </div>
     <!-- End Form Fields -->
-    
-    
-    <!-- Text Area -->
-    <textarea v-if="form.textArea.yes"
-              :required="form.textAreaRequired.yes"
-              :placeholder="form.textAreaPlaceholder"
-              :name="form.textAreaEndpoint"
-              rows="5"
-              v-model="formFields.textarea"></textarea>
-    <!-- End Text Area -->
-    
+        
     
     <!-- Bot Field -->
     <input  v-model="honeyPot"
@@ -70,7 +71,7 @@
     <!-- Same Page Success Message -->
     <div class="submit-success"
          :class="{'is-active': formSuccess}">
-      {{form.successMessage}} 
+      {{form.success_message}} 
     </div>
     <!-- End Same Page Success Message -->
     
@@ -87,14 +88,11 @@ export default {
   props: ['form'],
   
   created() {
-    this.form.formFields.forEach(field => {
-      if (field.required.yes) {
+    this.form.form_fields.forEach(field => {
+      if (field.required) {
         this.requiredFields.push(field.id);
       }
     });
-    if (this.form.textAreaRequired.yes) {
-      this.requiredFields.push('textarea');
-    }
   },
   
   data() {

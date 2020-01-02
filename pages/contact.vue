@@ -3,19 +3,25 @@
   <main class="contact-page">
     
     <div class="contact-page-inner">
-      <contact-form :form="ContactForm"></contact-form>
+      
+      <contact-form v-for="form in story.content.contact_form"
+                    :form="form"
+                    :key="form._uid"></contact-form>
 
-      <article class="contact-details">
-
-        <div v-for="item in ContactDetails"
-             :key="item.key"
+      <article v-for="details in story.content.contact_details"
+               v-editable="details"
+               :key="details._uid"
+               class="contact-details">
+        <div v-for="item in details.menu_items"
+             v-editable="item"
+             :key="item._uid"
              class="contact-item">
           <SVG-Loader :icon="item.icon"></SVG-Loader>
-          <div v-html="item.text"></div>
+          <p>  {{item.text}} </p>
         </div>
-
       </article>
-    </div>
+  
+  </div>
     
   </main>
 
@@ -24,28 +30,13 @@
 
 <script>
 
+import {metaData} from '~/mixins/metaData';
+import {storyblokBridge} from '~/mixins/storyblokBridge';
   
 export default {
   
-  head() {
-    return {
-      title: "Contact | Beaumont Decorating Chesterfield",
-      meta: [
-        { hid: 'description', name: 'description', content: "test test" }
-      ]
-      
-    }
-  },
-  
-  computed: {
-    ContactForm: function() {
-      return this.$store.state.cms.contactForm;
-    },
-    ContactDetails: function() {
-      return this.$store.state.cms.siteSettings.contactDetails;
-    }
+  mixins: [metaData, storyblokBridge],
     
-  }
 }
 
 </script>
@@ -95,8 +86,7 @@ export default {
     .contact-item {
       @include wrapper(start, start, $no-wrap: true);
       font-size: 1rem;
-      h4 {padding-bottom: $space-lightest;}
-      div {padding-left: $space-light;}
+      p {padding-left: $space-lighter;}
       .svg-icon {
         min-height: 1.6rem;
         min-width: 1.6rem;

@@ -1,7 +1,8 @@
 <template>
 
-  <header class="page-header"
-          :style="$setBackgroundImage(content.image.url)">
+  <header v-editable="content"
+          class="page-header"
+          :style="$setBackgroundImage(content.image)">
   
     <div class="header-inner">
       <div class="title-wrapper">

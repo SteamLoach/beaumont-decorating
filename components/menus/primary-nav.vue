@@ -1,11 +1,12 @@
 <template>
 
-  <nav class="primary-nav">
+  <nav v-editable="primary_nav"
+       class="primary-nav">
   
     <ul class="nav-item-wrapper">
-      <li v-for="item in primaryNav.menuItems"
-          :key="item.key">
-        <nuxt-link :to="item.route"> {{item.title}} </nuxt-link>
+      <li v-for="item in primary_nav.nav_items"
+          :key="item._uid">
+        <nuxt-link :to="item.route.url"> {{item.title}} </nuxt-link>
       </li>
     </ul>
   
@@ -19,9 +20,9 @@
 export default {
   
   computed: {
-    primaryNav: function() {
-      return this.$store.state.cms.primaryNavigation;
-    }
+    primary_nav: function() {
+      return this.$store.state.cms.primary_nav.content;
+    },
   }
   
 }

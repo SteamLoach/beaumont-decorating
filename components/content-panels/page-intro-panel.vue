@@ -6,7 +6,19 @@
         <h2> <span> {{content.title}} </span> </h2>
         <p> {{content.intro}} </p>
       </article>
-      <slot></slot>
+      
+      <div v-for="feature in content.feature"
+           class="intro-content-right">
+        
+        <contact-form v-if="feature.component === 'Form'"
+                    :form="feature">
+        </contact-form>
+      
+        <img v-else-if="feature.component === 'gallery-image'"
+             :src="feature.image"
+             class="page-intro-image" />
+      </div>
+      
     </div>
   </section>
 
@@ -46,7 +58,6 @@ export default {
     }
     
     .page-intro-wrapper,
-    .page-intro-image,
     .intro-content-right {
       @include column-scale(
         $default: 23,

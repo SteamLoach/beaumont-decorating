@@ -1,13 +1,16 @@
 <template>
 
-  <article class="content-panel service-panel"
-           :class="content.classExtensions">
+  <article v-editable="content"
+           class="content-panel service-panel"
+           :class="content.class_extensions">
     
     <h2 class="content-panel-title"><span> {{content.title}} </span></h2>
     
     <div class="content-panel-inner">
       
-      <div v-for="item in content.serviceItems"
+      <div v-for="item in content.service_items"
+           v-editable="item"
+           :key="item._uid"
            class="service-item">
         <SVG-Loader :icon="item.icon"></SVG-Loader>
         <h3 class="card-title"><span>{{item.title}}</span></h3>

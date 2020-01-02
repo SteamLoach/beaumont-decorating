@@ -9,10 +9,10 @@
     </div>
     
     <ul class="handheld-nav-links">
-      <li v-for="item in handheldNav.menuItems"
-          :key="item.key">
+      <li v-for="item in primary_nav.nav_items"
+          :key="item._uid">
         <span @click="toggleModal('handheldNav', 0)">
-          <nuxt-link :to="item.route"> {{item.title}} </nuxt-link>
+          <nuxt-link :to="item.route.url"> {{item.title}} </nuxt-link>
         </span>
       </li>
     </ul>
@@ -31,8 +31,8 @@ export default {
   mixins: [modalState],
   
   computed: {
-    handheldNav: function() {
-      return this.$store.state.cms.primaryNavigation;
+    primary_nav: function() {
+      return this.$store.state.cms.primary_nav.content;
     }
   }
   

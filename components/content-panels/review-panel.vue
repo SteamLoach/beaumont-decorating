@@ -1,19 +1,21 @@
 <template>
 
-  <article class="content-panel review-panel">
+  <article v-editable="content"
+           class="content-panel review-panel">
     
     <h2 class="content-panel-title"><span> {{content.title}}</span></h2>
     
     <div class="content-panel-inner">  
-      <div v-for="item in content.reviewItems"
+      <div v-for="item in content.review_items"
+           v-editable="item"
            class="review-item">
         
         <p class="review-body"> {{item.review}} </p>
         
         <div class="review-footer">
-          <img :src="item.image.url"/>
+          <img :src="item.image"/>
           <div class="customer-info">
-            <span class="customer-name"> {{item.name}} </span>
+            <span class="customer-name"> {{item.author}} </span>
             <span class="customer-location"> {{item.location}} </span>
           </div>
         </div>

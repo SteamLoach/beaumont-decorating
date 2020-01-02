@@ -1,10 +1,11 @@
 <template>
 
-  <article class="content-panel slide-gallery-panel">
+  <article v-editable="content"
+           class="content-panel slide-gallery-panel">
   
     <div class="content-panel-inner">
     
-      <slide-gallery :images="content.gallery"></slide-gallery>
+      <slide-gallery :images="content.gallery_images"></slide-gallery>
   
     </div>
   

@@ -1,19 +1,21 @@
 <template>
 
-  <article class="content-panel teaser-panel">
+  <article v-editable="content"
+           class="content-panel teaser-panel">
   
     <div class="content-panel-inner">
   
-      <div v-for="item in content.teaserItems"
+      <div v-for="item in content.teaser_items"
+           v-editable="item"
            :key="item.key"
            class="teaser-item"
-           :style="$setBackgroundImage(item.image.url)">
+           :style="$setBackgroundImage(item.image)">
         
         <div class="teaser-item-inner">
           <div class="teaser-title">
             <h3> {{item.title}} </h3>
-            <nuxt-link :to="item.route">
-              <button> {{item.button}} </button>
+            <nuxt-link :to="item.route.url">
+              <button> {{item.cta}} </button>
             </nuxt-link>
           </div>  
         </div>

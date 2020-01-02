@@ -1,13 +1,15 @@
 <template>
 
-  <section class="content-panel recent-project-panel">
+  <section v-editable="content"
+           class="content-panel recent-project-panel">
   
     <h2 class="content-panel-title"><span> {{content.title}} </span></h2>
     
     <div class="content-panel-inner">
-      <div v-for="item in content.recentProjectItems"
+      <div v-for="item in content.recent_project_items"
+           v-editable="item"
            class="recent-project-item"
-           :style="$setBackgroundImage(item.image.url)">
+           :style="$setBackgroundImage(item.image)">
         <span class="hover-prompt"> + </span>
         <div class="caption-wrapper">
           <p> <span> {{ item.caption }} </span> </p>

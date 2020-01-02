@@ -5,6 +5,11 @@
                :is="panel.componentReference"
                :key="panel.key"
                :content="panel"></component>
+    
+    <component v-for="panel in panels"
+               :is="panel.component"
+               :key="panel._uid"
+               :content="panel"></component>
   </section>
 
 </template>

@@ -2,16 +2,17 @@
   <div class="site-wrapper">
     
     <primary-nav></primary-nav>
-    
-    <handheld-nav></handheld-nav>
-    
+    <handheld-nav></handheld-nav>  
+
     <div class="handheld-nav-toggle"
          @click="toggleModal('handheldNav')">
       <SVG-Loader :icon="'menu-button'"></SVG-Loader>
     </div>
         
     <nuxt />
-    <site-footer></site-footer>
+    
+  <site-footer></site-footer>
+  
   </div>
 </template>
 

@@ -1,12 +1,16 @@
 import { toCase } from './plugins/utils.js';
-//const env = require('dotenv').config()
-
+import axios from 'axios'
+const env = require('dotenv').config()
 
 export default {
   mode: 'universal',
   
   router: {
-    base: '/'
+    base: '/',
+    middleware: 'siteSettings'
+  },
+   env: {
+    DRAFT_OR_PUBLISHED: process.env.DRAFT_OR_PUBLISHED,
   },
   /*
   ** Headers of the page
@@ -16,7 +20,9 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
+      process.env.DRAFT_OR_PUBLISHED === 'draft' ? 
+      {name: 'robots', content: 'noindex,nofollow'} : {},
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -55,7 +61,11 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     'kentico-kontent-nuxt-module',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    ['storyblok-nuxt', 
+      {accessToken: process.env.STORYBLOK_TOKEN,
+       cacheProvider: 'memory'}
+    ],
   ],
   styleResources: {
     scss: ['assets/stylesheets/main.scss']
@@ -79,7 +89,18 @@ export default {
   ** Build configuration
   */
   generate: {
-    dir: 'dist'
+    dir: 'dist',
+    routes: async () => {
+      let {data} = await axios.get(`https://api.storyblok.com/v1/cdn/stories?filter_query[component][in]=page&token=${process.env.STORYBLOK_ACCESS_TOKEN}`);
+        return data.stories.map(story => {
+          if (story.name !== 'home') {
+            return {
+              route: `/${story['full_slug']}`,
+              payload: story,
+            }
+          }
+        });
+    }
   },
   
   build: {
