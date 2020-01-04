@@ -80,8 +80,9 @@ export default {
   */
   generate: {
     dir: 'dist',
+    fallback: true,
     routes: async () => {
-      let {data} = await axios.get(`https://api.storyblok.com/v1/cdn/stories?filter_query[component][in]=page&token=${process.env.STORYBLOK_TOKEN}`);
+      let {data} = await axios.get(`https://api.storyblok.com/v1/cdn/stories/?filter_query[component][in]=page&token=${process.env.STORYBLOK_TOKEN}`);
         return data.stories.map(story => {
             return {
               route: `/${story['full_slug']}`,
