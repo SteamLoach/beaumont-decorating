@@ -1,9 +1,5 @@
 <template>
-
-  <i>
     <component :is="iconComponent"></component>
-  </i>
-
 </template>
 
 

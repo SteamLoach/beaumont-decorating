@@ -1,5 +1,5 @@
-import { toCase } from './plugins/utils.js';
 import axios from 'axios'
+////
 const env = require('dotenv').config()
 
 export default {
@@ -60,7 +60,6 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    'kentico-kontent-nuxt-module',
     '@nuxtjs/style-resources',
     ['storyblok-nuxt', 
       {accessToken: process.env.STORYBLOK_TOKEN,
@@ -69,15 +68,6 @@ export default {
   ],
   styleResources: {
     scss: ['assets/stylesheets/main.scss']
-  },
-  kenticokontent: {
-    projectId: process.env.KENTICO_PROJECT_ID,
-    enableAdvancedLogging: false,
-    //previewApiKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    //enablePreviewMode: true,
-    //baseUrl: 'https://custom.uri/api/KenticoKontentProxy',
-    //securedApiKey: 'xxx',
-    //enableSecuredMode: true
   },
   /*
   ** Axios module configuration

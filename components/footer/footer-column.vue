@@ -3,6 +3,12 @@
   <div v-editable="column"
        class="footer-column">
     <ul :class="column.type">
+      
+      <li v-if="column.type === 'credits'"
+          class="footer-item"> 
+        <p> Ⓒ Beaumont Decorating {{currentYear}} </p>
+      </li>
+      
       <li v-for="item in column.links"
           :key="item._uid">
         
@@ -47,7 +53,13 @@
 <script>
 
 export default {
-  props: ["column"]
+  props: ["column"],
+  
+  computed: {
+    currentYear: function() {
+      return new Date().getFullYear();
+    }
+  }
 }
 
 </script>

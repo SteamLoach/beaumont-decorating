@@ -20,9 +20,7 @@
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/style-resources": "^1.0.0",
     "node-sass": "^4.13.0",
-    "push-dir": "^0.4.1",
     "sass-loader": "^8.0.0",
-    "kentico-kontent-nuxt-module": "^3.3.0",
     "rxjs": "^6.5.3"
   }
 }
