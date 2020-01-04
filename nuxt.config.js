@@ -81,14 +81,12 @@ export default {
   generate: {
     dir: 'dist',
     routes: async () => {
-      let {data} = await axios.get(`https://api.storyblok.com/v1/cdn/stories?filter_query[component][in]=page&token=${process.env.STORYBLOK_ACCESS_TOKEN}`);
+      let {data} = await axios.get(`https://api.storyblok.com/v1/cdn/stories?filter_query[component][in]=page&token=${process.env.STORYBLOK_TOKEN}`);
         return data.stories.map(story => {
-          if (story.name !== 'home') {
             return {
               route: `/${story['full_slug']}`,
               payload: story,
             }
-          }
         });
     }
   },
